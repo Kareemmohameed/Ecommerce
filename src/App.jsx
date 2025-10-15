@@ -25,7 +25,7 @@ import Footer from './Components/Footer/Footer'
 
 let router= createBrowserRouter([
   {
-    path: '',element:<LayOut/> , children:[
+    path: '/Ecommerce',element:<LayOut/> , children:[
       {index:true, element:<ProdectedRoute><Home/></ProdectedRoute>},
       {path:'Cart', element:<ProdectedRoute><Cart/></ProdectedRoute>},
       {path:'WishList', element:<ProdectedRoute><WishList/></ProdectedRoute>},
