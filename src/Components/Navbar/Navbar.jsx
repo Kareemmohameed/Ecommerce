@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/images/logo.svg";
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import { CounterContext } from "../Context/UserContext";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import DarkModeToggle from "../DarkMode/DarkModeToggle";
 import { CartContext } from "../Context/CartContext";
@@ -17,33 +16,35 @@ const links = [
 
 export default function Navbar() {
   const { CartDetails } = useContext(CartContext);
-  let { token, setToken } = useContext(AuthContext);
-  let navigate = useNavigate();
+  const { token, setToken } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   function LogOut() {
     localStorage.clear();
     setToken(null);
-    navigate("/Login");
+    navigate("LogIn"); // ✅ بيحوّل بشكل صحيح للصفحة داخل /Ecommerce
   }
 
   return (
     <nav className="sticky top-0 z-50 shadow-md bg-zinc-100 dark:bg-gray-900">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between py-5 px-5">
-        {/* Logo */}
+        
+        {/* 🟢 Logo & Links */}
         <div className="flex items-center gap-4">
           <NavLink to="">
             <img src={logo} alt="FreshCart Logo" />
           </NavLink>
 
-          {/* Navigation Links */}
-          {token ? (
+          {token && (
             <ul className="flex gap-6 text-gray-700">
               {links.map((link) => (
                 <li key={link.to}>
                   <NavLink
                     to={link.to}
+                    end={link.to === ""} // ✅ يحل مشكلة Home دايمًا Active
                     className={({ isActive }) =>
                       isActive
-                        ? "text-green-700 dark:text-green-700 font-semibold "
+                        ? "text-green-700 dark:text-green-700 font-semibold"
                         : "text-gray-700 hover:text-green-900 dark:text-gray-300 dark:hover:text-green-700 font-semibold"
                     }
                   >
@@ -52,32 +53,34 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-          ) : (
-            ""
           )}
         </div>
 
+        {/* 🟢 Right Section */}
         <div className="flex items-center gap-5">
+          {/* Dark Mode + Cart */}
           <div className="flex justify-center items-center gap-1">
             <DarkModeToggle />
             <Link to="Cart">
               <ul>
                 <li className="relative">
                   <i className="fa-solid fa-cart-shopping text-2xl hover:text-green-800"></i>
-
-                  {CartDetails?.numOfCartItems?<span
-                    className="w-4 h-4 bg-green-700 rounded-full 
-                       absolute -top-3.5 left-2 
-                       text-white text-xs 
-                       flex items-center justify-center"
-                  >
-                    {CartDetails?.numOfCartItems}
-                  </span> : null}
+                  {CartDetails?.numOfCartItems ? (
+                    <span
+                      className="w-4 h-4 bg-green-700 rounded-full 
+                      absolute -top-3.5 left-2 
+                      text-white text-xs 
+                      flex items-center justify-center"
+                    >
+                      {CartDetails?.numOfCartItems}
+                    </span>
+                  ) : null}
                 </li>
               </ul>
             </Link>
           </div>
 
+          {/* Social Icons */}
           <ul className="flex items-center gap-3 text-gray-600">
             <li>
               <i className="fa-brands fa-facebook-f cursor-pointer dark:text-white hover:text-blue-700"></i>
@@ -96,21 +99,20 @@ export default function Navbar() {
             </li>
           </ul>
 
+          {/* Auth Buttons */}
           <ul className="flex items-center gap-4 text-gray-700">
             {token ? (
-              <>
-                <li
-                  className="hover:text-black cursor-pointer dark:text-white dark:hover:text-green-700"
-                  onClick={LogOut}
-                >
-                  Sign Out
-                </li>
-              </>
+              <li
+                className="hover:text-black cursor-pointer dark:text-white dark:hover:text-green-700"
+                onClick={LogOut}
+              >
+                Sign Out
+              </li>
             ) : (
               <>
                 <li>
                   <NavLink
-                    to="Login"
+                    to="LogIn"
                     className="hover:text-black dark:text-white dark:hover:text-green-700"
                   >
                     Log In
