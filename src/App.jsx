@@ -25,20 +25,22 @@ import Footer from './Components/Footer/Footer'
 
 let router= createBrowserRouter([
   {
-    path: 'Ecommerce',element:<LayOut/> , children:[
-      {index:true, element:<ProdectedRoute><Home/></ProdectedRoute>},
-      {path:'Cart', element:<ProdectedRoute><Cart/></ProdectedRoute>},
-      {path:'WishList', element:<ProdectedRoute><WishList/></ProdectedRoute>},
-      {path:'Products', element:<ProdectedRoute><Products/></ProdectedRoute>},
-      {path:'Catrgories', element:<ProdectedRoute><Catrgories/></ProdectedRoute>},
-      {path:'Brands', element:<ProdectedRoute><Brands/></ProdectedRoute>},
-      {path:'ProductDetails/:id/:category', element:<ProdectedRoute><ProductDetails/></ProdectedRoute>},
-      {path:'LogIn', element:<LogIn/>},
-      {path:'Register', element:<Register/>},
-      {path:'ForgetPassword', element:<ForgetPassword/>},
-      {path:'*', element:<NotFound/>},
-    ]
-  }
+  path: '/Ecommerce',
+  element: <LayOut />,
+  children: [
+    { index: true, element: <ProdectedRoute><Home/></ProdectedRoute> },
+    { path: 'Cart', element: <ProdectedRoute><Cart/></ProdectedRoute> },
+    { path: 'WishList', element: <ProdectedRoute><WishList/></ProdectedRoute> },
+    { path: 'Products', element: <ProdectedRoute><Products/></ProdectedRoute> },
+    { path: 'Catrgories', element: <ProdectedRoute><Catrgories/></ProdectedRoute> },
+    { path: 'Brands', element: <ProdectedRoute><Brands/></ProdectedRoute> },
+    { path: 'ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
+    { path: 'LogIn', element: <LogIn /> },
+    { path: 'Register', element: <Register /> },
+    { path: 'ForgetPassword', element: <ForgetPassword /> },
+    { path: '*', element: <NotFound /> },
+  ],
+}
 ])
 function App() {
 
