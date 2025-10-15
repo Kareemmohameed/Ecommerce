@@ -25,7 +25,7 @@ import Footer from './Components/Footer/Footer'
 
 let router= createBrowserRouter([
   {
-  path: '/Login',
+  path: '/Ecommerce',
   element: <LayOut />,
   children: [
     { index: true, element: <ProdectedRoute><Home/></ProdectedRoute> },

@@ -8,7 +8,7 @@ export default function ProdectedRoute(props) {
     return props.children
     
   }else{
-      return <Navigate to='/Login'></Navigate>
+<Navigate to='/Ecommerce/LogIn' replace />
   }
   
 }
