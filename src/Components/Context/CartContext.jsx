@@ -8,14 +8,13 @@ export const CartContext = createContext(null);
 
 export default function CartContextProvider({ children }) {
   const [CartDetails, setCartDetails] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const headers = {
     token: localStorage.getItem("token"),
   };
 
-  
   function GetCart() {
-        setIsLoading(true);
+    setIsLoading(true);
     axios
       .get("https://ecommerce.routemisr.com/api/v1/cart", { headers })
       .then(({ data }) => {
@@ -23,13 +22,15 @@ export default function CartContextProvider({ children }) {
       })
       .catch((error) => {
         console.log(error);
-      }).finally(()=>{
-         setIsLoading(false)
       })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function removeProduct(productId) {
-    axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, {
+    axios
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, {
         headers,
       })
       .then(({ data }) => {
@@ -38,30 +39,32 @@ export default function CartContextProvider({ children }) {
       });
   }
 
-  function cartProductQuantity(productId,count){
-    axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`, {
-      count
-    },{
-      headers
-    }
-    ).then(({data})=>{
-      setCartDetails(data);
-      toast.success("Product Quantity Updated");
-    })
+  function cartProductQuantity(productId, count) {
+    axios
+      .put(
+        `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
+        {
+          count,
+        },
+        {
+          headers,
+        }
+      )
+      .then(({ data }) => {
+        setCartDetails(data);
+        toast.success("Product Quantity Updated");
+      });
   }
 
-  function clearAllProduct(){
-    axios.delete(`https://ecommerce.routemisr.com/api/v1/cart` , {headers}).then(({data})=>{
-      console.log(data)
-      toast.success("All Product Is Clear")
-            setCartDetails(data);
-
-    })
+  function clearAllProduct() {
+    axios
+      .delete(`https://ecommerce.routemisr.com/api/v1/cart`, { headers })
+      .then(({ data }) => {
+        console.log(data);
+        toast.success("All Product Is Clear");
+        setCartDetails(data);
+      });
   }
-
-
-
-  
 
   useEffect(() => {
     if (isLoading) return;
@@ -81,17 +84,26 @@ export default function CartContextProvider({ children }) {
       )
       .then(({ data }) => {
         toast.success(data.message, { duration: 4000 });
-              setCartDetails(data);
-              console.log(data)
-              GetCart();
-
+        setCartDetails(data);
+        console.log(data);
+        GetCart();
       })
       .catch((error) => {
         console.log(error);
       });
   }
   return (
-    <CartContext.Provider value={{ addProductTocart, GetCart, removeProduct, cartProductQuantity, clearAllProduct ,CartDetails , isLoading }}>
+    <CartContext.Provider
+      value={{
+        addProductTocart,
+        GetCart,
+        removeProduct,
+        cartProductQuantity,
+        clearAllProduct,
+        CartDetails,
+        isLoading,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

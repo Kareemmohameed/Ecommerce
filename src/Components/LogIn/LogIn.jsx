@@ -16,7 +16,7 @@ export default function Login() {
      .then((res)=>{
       setToken(res.data.token)
       localStorage.setItem('token',res.data.token)
-      navigate('/Ecommerce')
+      navigate('/')
      })
     
  
