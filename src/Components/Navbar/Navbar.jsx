@@ -22,7 +22,7 @@ export default function Navbar() {
   function LogOut() {
     localStorage.clear();
     setToken(null);
-    navigate("LogIn"); // ✅ بيحوّل بشكل صحيح للصفحة داخل /Ecommerce
+    navigate("LogIn");
   }
 
   return (
@@ -41,7 +41,7 @@ export default function Navbar() {
                 <li key={link.to}>
                   <NavLink
                     to={link.to}
-                    end={link.to === ""} // ✅ يحل مشكلة Home دايمًا Active
+                    end={link.to === ""} 
                     className={({ isActive }) =>
                       isActive
                         ? "text-green-700 dark:text-green-700 font-semibold"
