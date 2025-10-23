@@ -25,7 +25,7 @@ import Footer from './Components/Footer/Footer'
 
 let router= createBrowserRouter([
   {
-  path: 'Ecommerce',
+  path: '',
   element: <LayOut />,
   children: [
     { index: true, element: <ProdectedRoute><Ecommerce/></ProdectedRoute> },
@@ -34,14 +34,19 @@ let router= createBrowserRouter([
     { path: 'Products', element: <ProdectedRoute><Products/></ProdectedRoute> },
     { path: 'Catrgories', element: <ProdectedRoute><Catrgories/></ProdectedRoute> },
     { path: 'Brands', element: <ProdectedRoute><Brands/></ProdectedRoute> },
-{ path: '/Ecommerce/ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
+{ path: '/ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
     { path: 'LogIn', element: <LogIn /> },
     { path: 'Register', element: <Register /> },
     { path: 'ForgetPassword', element: <ForgetPassword /> },
     { path: '*', element: <NotFound /> },
   ],
+  
 }
-])
+],
+
+{ basename: "/Ecommerce" }
+
+)
 function App() {
 
   return <div className='bg-white dark:bg-gray-900 dark:text-white'> <AuthContextProvider>
