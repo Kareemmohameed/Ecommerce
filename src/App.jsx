@@ -34,7 +34,7 @@ let router= createBrowserRouter([
     { path: 'Products', element: <ProdectedRoute><Products/></ProdectedRoute> },
     { path: 'Catrgories', element: <ProdectedRoute><Catrgories/></ProdectedRoute> },
     { path: 'Brands', element: <ProdectedRoute><Brands/></ProdectedRoute> },
-    { path: 'ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
+{ path: '/Ecommerce/ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
     { path: 'LogIn', element: <LogIn /> },
     { path: 'Register', element: <Register /> },
     { path: 'ForgetPassword', element: <ForgetPassword /> },
