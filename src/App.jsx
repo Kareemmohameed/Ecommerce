@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import LayOut from './Components/LayOut/LayOut'
-import Home from './Components/Home/Home'
+import Ecommerce from './Components/Home/Ecommerce'
 import Cart from './Components/Cart/Cart'
 import WishList from './Components/WishList/WishList'
 import Products from './Components/Products/Products'
@@ -25,10 +25,10 @@ import Footer from './Components/Footer/Footer'
 
 let router= createBrowserRouter([
   {
-  path: '/',
+  path: 'Ecommerce',
   element: <LayOut />,
   children: [
-    { index: true, element: <ProdectedRoute><Home/></ProdectedRoute> },
+    { index: true, element: <ProdectedRoute><Ecommerce/></ProdectedRoute> },
     { path: 'Cart', element: <ProdectedRoute><Cart/></ProdectedRoute> },
     { path: 'WishList', element: <ProdectedRoute><WishList/></ProdectedRoute> },
     { path: 'Products', element: <ProdectedRoute><Products/></ProdectedRoute> },
