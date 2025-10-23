@@ -33,7 +33,8 @@ export default function ProductsRecent() {
 
   return (
     <>
-      {isLoading ? ( <Loading />
+      {isLoading ? (
+        <Loading />
       ) : (
         <div className="flex flex-wrap ">
           {products?.map((product) => (
@@ -101,10 +102,21 @@ export default function ProductsRecent() {
                       + Add
                     </button>
 
-                    <i className="fa-solid fa-heart text-2xl ps-2 hover:text-red-500 cursor-pointer"></i>
+
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // addProductTocart(product.id);
+                      }}
+                    >
+                      {" "}
+                      <i className="fa-solid fa-heart text-2xl ps-2 hover:text-red-500 cursor-pointer"></i>
+                    </button>
                   </div>
                 </div>
               </Link>
+
               {product.priceAfterDiscount ? (
                 <span
                   className="absolute left-9 top-8 bg-red-100 text-red-800
