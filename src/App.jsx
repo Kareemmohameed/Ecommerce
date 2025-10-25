@@ -18,45 +18,44 @@ import CounterContextProvider from './Components/Context/UserContext'
 import AuthContextProvider from './Components/Context/AuthContext'
 import ProdectedRoute from './Components/ProdectedRoute/ProdectedRoute'
 import ProductDetails from './Components/ProductDetails/ProductDetails'
-import CartContextProvider from './Components/Context/CartContext';
-import toast, { Toaster } from 'react-hot-toast';
+import CartContextProvider from './Components/Context/CartContext'
+import WishListContextProvider from './Components/Context/WishlistContext' 
+import toast, { Toaster } from 'react-hot-toast'
 import Footer from './Components/Footer/Footer'
 
-
-let router= createBrowserRouter([
+let router = createBrowserRouter([
   {
-  path: '',
-  element: <LayOut />,
-  children: [
-    { index: true, element: <ProdectedRoute><Ecommerce/></ProdectedRoute> },
-    { path: 'Cart', element: <ProdectedRoute><Cart/></ProdectedRoute> },
-    { path: 'WishList', element: <ProdectedRoute><WishList/></ProdectedRoute> },
-    { path: 'Products', element: <ProdectedRoute><Products/></ProdectedRoute> },
-    { path: 'Catrgories', element: <ProdectedRoute><Catrgories/></ProdectedRoute> },
-    { path: 'Brands', element: <ProdectedRoute><Brands/></ProdectedRoute> },
-{ path: '/ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails/></ProdectedRoute> },
-    { path: 'LogIn', element: <LogIn /> },
-    { path: 'Register', element: <Register /> },
-    { path: 'ForgetPassword', element: <ForgetPassword /> },
-    { path: '*', element: <NotFound /> },
-  ],
-  
-}
-],
+    path: '',
+    element: <LayOut />,
+    children: [
+      { index: true, element: <ProdectedRoute><Ecommerce /></ProdectedRoute> },
+      { path: 'Cart', element: <ProdectedRoute><Cart /></ProdectedRoute> },
+      { path: 'WishList', element: <ProdectedRoute><WishList /></ProdectedRoute> },
+      { path: 'Products', element: <ProdectedRoute><Products /></ProdectedRoute> },
+      { path: 'Catrgories', element: <ProdectedRoute><Catrgories /></ProdectedRoute> },
+      { path: 'Brands', element: <ProdectedRoute><Brands /></ProdectedRoute> },
+      { path: '/ProductDetails/:id/:category', element: <ProdectedRoute><ProductDetails /></ProdectedRoute> },
+      { path: 'LogIn', element: <LogIn /> },
+      { path: 'Register', element: <Register /> },
+      { path: 'ForgetPassword', element: <ForgetPassword /> },
+      { path: '*', element: <NotFound /> },
+    ],
+  },
+], { basename: "/Ecommerce" });
 
-{ basename: "/Ecommerce" }
-
-)
 function App() {
-
-  return <div className='bg-white dark:bg-gray-900 dark:text-white'> <AuthContextProvider>
-    <CartContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-      <Toaster />
-    </CartContextProvider>
-  </AuthContextProvider>
+  return (
+    <div className='bg-white dark:bg-gray-900 dark:text-white'>
+      <AuthContextProvider>
+        <CartContextProvider>
+          <WishListContextProvider> 
+            <RouterProvider router={router}></RouterProvider>
+            <Toaster />
+          </WishListContextProvider>
+        </CartContextProvider>
+      </AuthContextProvider>
     </div>
-    
+  );
 }
 
-export default App
+export default App;

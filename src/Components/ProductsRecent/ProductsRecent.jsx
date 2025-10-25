@@ -5,11 +5,16 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ProductDetails from "../ProductDetails/ProductDetails";
 import { CartContext } from "../Context/CartContext";
+import { WishListContext } from "../Context/WishlistContext";
+
+
 
 export default function ProductsRecent() {
   const { addProductTocart } = useContext(CartContext);
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { wishList, addToWishlist, removeFromWishlist } = useContext(WishListContext);
+
 
   async function getAllProducts() {
     setIsLoading(true);
@@ -104,15 +109,26 @@ export default function ProductsRecent() {
 
 
                     <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // addProductTocart(product.id);
-                      }}
-                    >
-                      {" "}
-                      <i className="fa-solid fa-heart text-2xl ps-2 hover:text-red-500 cursor-pointer"></i>
-                    </button>
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const isInWishlist = wishList.some((item) => item.id === product.id);
+    if (isInWishlist) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product.id);
+    }
+  }}
+>
+  <i
+    className={`fa-solid fa-heart text-2xl ps-2 cursor-pointer transition-colors duration-300 ${
+      wishList.some((item) => item.id === product.id)
+        ? "text-red-500"
+        : "text-gray-200 hover:text-red-500"
+    }`}
+  ></i>
+</button>
                   </div>
                 </div>
               </Link>

@@ -41,7 +41,7 @@ export default function Navbar() {
                 <li key={link.to}>
                   <NavLink
                     to={link.to}
-                    end={link.to === ""} // ✅ يحل مشكلة Home دايمًا Active
+                    end={link.to === ""} 
                     className={({ isActive }) =>
                       isActive
                         ? "text-green-700 dark:text-green-700 font-semibold"
