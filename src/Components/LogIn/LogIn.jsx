@@ -92,12 +92,7 @@ export default function Login() {
     </label>
   </div>
 
- <h3
-        className="text-green-600 cursor-pointer hover:underline mb-3 font-bold"
-        onClick={() => navigate("/ForgetPassword")}
-      >
-        Forget My Password
-      </h3>  
+ 
 
   <button
     type="submit"

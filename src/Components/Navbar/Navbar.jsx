@@ -90,7 +90,8 @@ export default function Navbar() {
         {/* Cart + DarkMode */}
         <div className="flex items-center gap-4">
           <DarkModeToggle />
-          <Link to="Cart" className="relative">
+          {token && (
+<Link to="Cart" className="relative">
             <i className="fa-solid fa-cart-shopping text-xl hover:text-green-600 dark:text-white"></i>
             {CartDetails?.numOfCartItems > 0 && (
               <span className="w-4 h-4 bg-green-700 rounded-full absolute -top-2 -right-2 text-white text-xs flex items-center justify-center">
@@ -98,10 +99,12 @@ export default function Navbar() {
               </span>
             )}
           </Link>
+          )}
+          
         </div>
 
         {/* Sign Out / Login */}
-        <div className="hidden sm:flex items-center">
+        <div className="hidden sm:flex items-center gap-4">
           {token ? (
             <span
               onClick={LogOut}
