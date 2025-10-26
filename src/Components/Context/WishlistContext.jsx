@@ -54,6 +54,7 @@ export default function WishListContextProvider({ children }) {
       .then(({ data }) => {
         toast.success("Removed from Wishlist");
         setWishList(data.data);
+        getWishlist();
       })
       .catch((error) => {
         console.error(error);

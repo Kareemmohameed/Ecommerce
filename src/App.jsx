@@ -45,7 +45,7 @@ let router = createBrowserRouter([
 
 function App() {
   return (
-    <div className='bg-white dark:bg-gray-900 dark:text-white'>
+    <div className='bg-white dark:bg-gray-900 dark:text-white pt-[3rem]'>
       <AuthContextProvider>
         <CartContextProvider>
           <WishListContextProvider> 

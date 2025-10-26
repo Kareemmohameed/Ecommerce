@@ -8,7 +8,7 @@ export default function LayOut() {
     useEffect(()=>{},[])
   return<>
      <Navbar/>
-     <div className='container'>
+     <div className='container pt-[2rem]'>
       <Outlet></Outlet>
      </div>
     </>
