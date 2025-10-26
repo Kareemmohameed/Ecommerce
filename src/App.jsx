@@ -41,7 +41,7 @@ let router = createBrowserRouter([
       { path: '*', element: <NotFound /> },
     ],
   },
-], { basename: "/Ecommerce" });
+], { basename: "ecommerce-k2" });
 
 function App() {
   return (
