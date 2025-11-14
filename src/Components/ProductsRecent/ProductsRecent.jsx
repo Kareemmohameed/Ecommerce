@@ -92,20 +92,28 @@ export default function ProductsRecent() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center mt-3 mb-3">
+                  <div className="flex justify-between items-center mt-3 mb-3 relative">
                     <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        addProductTocart(product.id);
-                      }}
-                      className="cursor-pointer bg-green-700 text-white py-2 rounded-md w-[90%] mx-auto 
-             transform translate-y-10 opacity-0 
-             transition-all duration-500 
-             group-hover:translate-y-0 group-hover:opacity-100"
-                    >
-                      + Add
-                    </button>
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addProductTocart(product.id);
+  }}
+  className="
+    bg-green-700 text-white py-2 rounded-md px-3 w-[80%] cursor-pointer
+    transition-all duration-500
+
+    /* mobile: ثابت جنب القلب */
+    static opacity-100 translate-y-0 
+
+    /* desktop: desapare + يظهر بالهوفر */
+    sm:absolute sm:right-0 sm:opacity-0 sm:translate-y-3
+    sm:group-hover:opacity-100 sm:group-hover:translate-y-0
+  "
+>
+  + Add
+</button>
+
 
 
                     <button
