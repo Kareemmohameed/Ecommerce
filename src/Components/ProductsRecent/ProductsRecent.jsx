@@ -7,14 +7,12 @@ import ProductDetails from "../ProductDetails/ProductDetails";
 import { CartContext } from "../Context/CartContext";
 import { WishListContext } from "../Context/WishlistContext";
 
-
-
 export default function ProductsRecent() {
   const { addProductTocart } = useContext(CartContext);
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { wishList, addToWishlist, removeFromWishlist } = useContext(WishListContext);
-
+  const { wishList, addToWishlist, removeFromWishlist } =
+    useContext(WishListContext);
 
   async function getAllProducts() {
     setIsLoading(true);
@@ -94,49 +92,46 @@ export default function ProductsRecent() {
 
                   <div className="flex justify-between items-center mt-3 mb-3 relative">
                     <button
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    addProductTocart(product.id);
-  }}
-  className="
-    bg-green-700 text-white py-2 rounded-md px-3 w-[80%] cursor-pointer
-    transition-all duration-500
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        addProductTocart(product.id);
+                      }}
+                      className=" bg-green-700 text-white py-2 rounded-md px-3 w-[80%] cursor-pointer transition-all duration-500
 
-    /* mobile: ثابت جنب القلب */
     static opacity-100 translate-y-0 
 
-    /* desktop: desapare + يظهر بالهوفر */
+    
     sm:absolute sm:right-0 sm:opacity-0 sm:translate-y-3
     sm:group-hover:opacity-100 sm:group-hover:translate-y-0
   "
->
-  + Add
-</button>
-
-
+                    >
+                      + Add
+                    </button>
 
                     <button
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-    const isInWishlist = wishList.some((item) => item.id === product.id);
-    if (isInWishlist) {
-      removeFromWishlist(product.id);
-    } else {
-      addToWishlist(product.id);
-    }
-  }}
->
-  <i
-    className={`fa-solid fa-heart text-2xl ps-2 cursor-pointer transition-colors duration-300 ${
-      wishList.some((item) => item.id === product.id)
-        ? "text-red-500"
-        : "text-gray-200 hover:text-red-500"
-    }`}
-  ></i>
-</button>
+                        const isInWishlist = wishList.some(
+                          (item) => item.id === product.id
+                        );
+                        if (isInWishlist) {
+                          removeFromWishlist(product.id);
+                        } else {
+                          addToWishlist(product.id);
+                        }
+                      }}
+                    >
+                      <i
+                        className={`fa-solid fa-heart text-2xl ps-2 cursor-pointer transition-colors duration-300 ${
+                          wishList.some((item) => item.id === product.id)
+                            ? "text-red-500"
+                            : "text-gray-200 hover:text-red-500"
+                        }`}
+                      ></i>
+                    </button>
                   </div>
                 </div>
               </Link>
