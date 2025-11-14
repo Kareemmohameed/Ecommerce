@@ -3,7 +3,7 @@
 **E-Commerce** is a modern and responsive web application that allows users to browse, search, and shop products effortlessly.  
 It’s designed with a clean interface, smooth navigation, and a realistic shopping experience.
 
-🔗 **Live Project:** [E-Commerce](https://kareemmohameed.github.io/Ecommerce)
+🔗 **Live Project:** [E-Commerce](https://kareem-mohammed-stack.github.io/Ecommerce)
 
 ---
 
