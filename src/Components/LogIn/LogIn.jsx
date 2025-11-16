@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import * as Yup from 'yup';
 import ForgetPassword from '../ForgetPassword/ForgetPassword';
 import { AuthContext } from '../Context/AuthContext';
+import toast from 'react-hot-toast';
+
 
 export default function Login() {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -22,15 +24,32 @@ export default function Login() {
   }, [location.state]);
 
   async function handelLogin(values) {
-    try {
-      const { data } = await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signin', values);
-      setToken(data.token);
-      localStorage.setItem('token', data.token);
-      navigate('/');
-    } catch (err) {
-      console.log('Login Error:', err);
+  try {
+    const { data } = await axios.post(
+      'https://ecommerce.routemisr.com/api/v1/auth/signin',
+      values
+    );
+
+    setToken(data.token);
+    localStorage.setItem('token', data.token);
+    navigate('/');
+  } catch (err) {
+    console.log('Login Error:', err);
+
+    if (err.response?.data?.message) {
+      toast.error(err.response.data.message, {
+        position: 'top-center',
+        duration: 3000,
+      });
+    } 
+    else {
+      toast.error('Email or Password is incorrect', {
+        position: 'top-center',
+      });
     }
   }
+}
+
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email is Invalid').required('Email is Required'),

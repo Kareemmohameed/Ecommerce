@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { AuthContext } from '../Context/AuthContext';
+import toast from 'react-hot-toast';
 
 
 
@@ -14,18 +15,45 @@ export default function Register() {
     const [isSuccess, setIsSuccess]=useState(false);
     useEffect(()=>{},[])
     let navigate=useNavigate();
-   async function handelRegister(values){
-     let {data}= await axios.post('https://ecommerce.routemisr.com/api/v1/auth/signup',values)
-     .then((res)=>{
-      setToken(res.data.token)
-      localStorage.setItem('token',res.data.token)
-        navigate('/Login')
-        setIsSuccess(true)
-     })
-     if(data.message=='success'){
-     }
  
+     async function handelRegister(values) {
+  try {
+    let { data } = await axios.post(
+      "https://ecommerce.routemisr.com/api/v1/auth/signup",
+      values
+    );
+
+    if (data.message === "success") {
+      setToken(data.token);
+      localStorage.setItem("token", data.token);
+
+      toast.success("Register is Success", {
+        duration: 4000,
+        position: "top-center",
+      });
+
+      navigate("/");
     }
+  } catch (err) {
+    if (err.response?.data?.message === "Account Already Exists") {
+      toast.error("Email already exists", {
+        position: "top-center",
+      });
+    }
+
+    else if (err.response?.data?.errors?.length > 0) {
+      toast.error(err.response.data.errors[0].message, {
+        position: "top-center",
+      });
+    }
+
+    else {
+      toast.error("Error 404 !", {
+        position: "top-center",
+      });
+    }
+  }
+}
     let validationSchema=Yup.object().shape({
       name:Yup.string().min(3, 'Name Must be at least 3 characters').max(10, 'Name Max Is 10 letters').required('Name is Required'),
       email:Yup.string().email('Email is Invalid').required('Email is Required'),
