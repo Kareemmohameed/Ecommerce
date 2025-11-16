@@ -148,10 +148,13 @@ export default function ProductDetails() {
 
                 <div className="flex justify-between items-center mt-3 mb-3">
                   <button
-                    className="cursor-pointer bg-green-700 text-white py-2 rounded-md w-[90%] mx-auto 
- transform opacity-0 translate-y-5 
- transition-all duration-500 
- group-hover:opacity-100 group-hover:translate-y-0"
+                    className=" bg-green-700 text-white py-2 rounded-md px-3 w-[80%] cursor-pointer transition-all duration-500
+
+    static opacity-100 translate-y-0 
+
+    
+    lg:absolute lg:right-0 lg:opacity-0 lg:translate-y-3
+    lg:group-hover:opacity-100 lg:group-hover:translate-y-0"
                   >
                     + Add
                   </button>
