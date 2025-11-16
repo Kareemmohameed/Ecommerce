@@ -10,6 +10,14 @@ export default function Cart() {
     
   }, []);
 
+   if (!isLoading && (!CartDetails?.data?.products || CartDetails.data.products.length === 0)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-2xl font-semibold text-gray-700 dark:text-gray-300">
+        Cart is Empty
+      </div>
+    );
+  }
+
   return (
     <>
      {isLoading ? <Loading/> : <div className="relative overflow-x-auto shadow-md sm:rounded-lg min-h-screen *:w-full">
