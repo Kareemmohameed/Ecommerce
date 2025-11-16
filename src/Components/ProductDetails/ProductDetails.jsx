@@ -61,21 +61,21 @@ export default function ProductDetails() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="row bg-white dark:bg-gray-900">
+        <div className="flex flex-col md:flex-row bg-white dark:bg-gray-900">
           {ProDuctDetails && (
             <>
-              <div className="w-1/4 p-5">
+              <div className="w-full md:w-1/3 p-4">
                 <Slider {...settings}>
                   {ProDuctDetails?.images.map((src) => (
                     <img
                       src={src}
                       alt={ProDuctDetails?.title}
-                      className="w-full h-[400px] object-contain"
+                      className="w-full h-[250px] md:h-[400px] object-contain"
                     />
                   ))}
                 </Slider>
               </div>
-              <div className="w-3/4 p-5">
+              <div className="w-full md:w-2/3 p-4">
                 <h2 className="font-bold text-3xl dark:text-white">{`${ProDuctDetails?.title}`}</h2>
                 <p className="text-gray-600 mt-4 me-3 pb-2 font-light dark:text-gray-100">{`${ProDuctDetails?.description}`}</p>
                 <span className="text-green-700">{`${ProDuctDetails?.category.name}`}</span>
@@ -90,7 +90,7 @@ export default function ProductDetails() {
                 <button
                   onClick={() => {
                     addProductTocart(ProDuctDetails.id);
-}}
+                  }}
                   className="w-full cursor-pointer mt-4 bg-green-700 text-white p-2 rounded-xl"
                 >
                   +add to cart
@@ -100,9 +100,9 @@ export default function ProductDetails() {
           )}
         </div>
       )}
-      <div className="flex flex-wrap">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {RelatedProudcts?.map((product) => (
-          <div key={product.id} className="w-1/4 p-4 relative">
+          <div key={product.id} className="relative">
             <Link to={`/ProDuctDetails/${product.id}/${product.category.name}`}>
               <div
                 className="product group flex flex-col justify-between h-full overflow-hidden 
@@ -112,7 +112,7 @@ export default function ProductDetails() {
                 <img
                   src={product.imageCover}
                   alt={product.title}
-                  className="w-full h-[220px] object-cover rounded-md"
+                  className="w-full h-[200px] sm:h-[220px] object-cover rounded-md"
                 />
 
                 <div className="mt-2 flex-1">
@@ -149,9 +149,9 @@ export default function ProductDetails() {
                 <div className="flex justify-between items-center mt-3 mb-3">
                   <button
                     className="cursor-pointer bg-green-700 text-white py-2 rounded-md w-[90%] mx-auto 
-                       transform translate-y-10 opacity-0 
-                       transition-all duration-500 
-                       group-hover:translate-y-0 group-hover:opacity-100"
+ transform opacity-0 translate-y-5 
+ transition-all duration-500 
+ group-hover:opacity-100 group-hover:translate-y-0"
                   >
                     + Add
                   </button>

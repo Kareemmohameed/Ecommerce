@@ -25,13 +25,13 @@ export default function MainSlider() {
   <div className='row py-10'>
       <div className='w-3/4'>
       <Slider {...settings}>
-        <img src={Slider4} className='w-full h-[400px]' alt="" />
-        <img src={Slider2} className='w-full h-[400px]' alt="" />
+        <img src={Slider4} className='w-full h-[18.75rem]' alt="" />
+        <img src={Slider2} className='w-full h-[18.75rem]' alt="" />
         </Slider>
       </div>
     <div className='w-1/4'>
-    <img src={Slider3} className='w-full h-[200px]' alt="" />
-    <img src={Slider1} className='w-full h-[200px]' alt="" />
+    <img src={Slider3} className='w-full h-[9.375rem]' alt="" />
+    <img src={Slider1} className='w-full h-[9.375rem]' alt="" />
     </div>
     </div>
     

@@ -35,15 +35,18 @@ const [Categorys, setCategorys] = useState(null);
     },[])
 
   return<>
-  <h2 className='font-light text-2xl'>Shop Popular Categories</h2>
-  
+   <h2 className='font-light text-2xl'>Shop Popular Categories</h2>
+
       <Slider className='mt-5 mb-7' {...settings}>
-        
-      {Categorys?.map((category)=><div className='container'>
-      <img src={category.image} className="w-[150px] h-[150px]" alt={category.name} key={category._id}/>
-      <h1>{category.name}</h1>
-      </div>)}
-    </Slider>
+        {Categorys?.map((category) => (
+          <div className='flex flex-col items-center' key={category._id}>
+            <img src={category.image} className= "p-[0.1rem] rounded-xl w-[100px] h-[100px] md:w-[150px] md:h-[150px] " alt={category.name}/>
+<h1 className='text-center mt-2 text-xs sm:text-sm md:text-base truncate sm:whitespace-normal break-words'>
+  {category.name}
+</h1>
+          </div>
+        ))}
+      </Slider>
 
 
     </>

@@ -102,8 +102,8 @@ export default function ProductsRecent() {
     static opacity-100 translate-y-0 
 
     
-    sm:absolute sm:right-0 sm:opacity-0 sm:translate-y-3
-    sm:group-hover:opacity-100 sm:group-hover:translate-y-0
+    lg:absolute lg:right-0 lg:opacity-0 lg:translate-y-3
+    lg:group-hover:opacity-100 lg:group-hover:translate-y-0
   "
                     >
                       + Add
